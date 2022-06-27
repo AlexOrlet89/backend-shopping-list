@@ -63,11 +63,13 @@ describe('items', () => {
       description: 'apples',
       qty: 6,
       user_id: user.id,
+      bought: false,
     });
     await Item.insert({
       description: 'eggs',
       qty: 12,
       user_id: user2.id,
+      bought: false,
     });
     const resp = await agent.get('/api/v1/items');
     expect(resp.status).toEqual(200);
@@ -110,7 +112,7 @@ describe('items', () => {
     expect(resp.status).toBe(403);
   });
 
-  it.only('DELETE /api/v1/items/:id should delete items for valid user', async () => {
+  it('DELETE /api/v1/items/:id should delete items for valid user', async () => {
     const [agent, user] = await registerAndLogin();
     const item = await Item.insert({
       description: 'apples',

@@ -54,7 +54,7 @@ describe('items', () => {
     });
   });
 
-  it.only('GET /api/v1/items returns all items associated with the authenticated User', async () => {
+  it('GET /api/v1/items returns all items associated with the authenticated User', async () => {
     // create a user
     const [agent, user] = await registerAndLogin();
     // add a second user with items
@@ -94,7 +94,7 @@ describe('items', () => {
     expect(resp.body).toEqual({ ...item, bought: true });
   });
 
-  it('UPDATE /api/v1/items/:id should 403 for invalid users', async () => {
+  it.only('UPDATE /api/v1/items/:id should 403 for invalid users', async () => {
     // create a user
     const [agent] = await registerAndLogin();
     // create a second user
